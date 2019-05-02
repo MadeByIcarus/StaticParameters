@@ -33,7 +33,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "IcarusTests\\": "tests/"
+      "IcarusTests\\StaticParameters\\": "tests/"
     }
   }
 }

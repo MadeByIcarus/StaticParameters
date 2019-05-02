@@ -1,5 +1,6 @@
 staticParameters:
     someName:
-        class: IcarusTests\CustomParameters
+        class: IcarusTests\StaticParameters\CustomParameters
         parameters:
             apiKey: mySpecialKey
+            someNull: null

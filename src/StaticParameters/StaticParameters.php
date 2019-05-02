@@ -20,6 +20,11 @@ abstract class StaticParameters
 
 
 
+    /**
+     * @internal
+     * @param $name
+     * @param $value
+     */
     public static function add($name, $value)
     {
         if (self::isLocked()) {
@@ -30,6 +35,9 @@ abstract class StaticParameters
 
 
 
+    /**
+     * @internal
+     */
     public static function lock()
     {
         self::$locked[static::class] = true;
@@ -37,6 +45,10 @@ abstract class StaticParameters
 
 
 
+    /**
+     * @internal
+     * @return bool
+     */
     public static function isLocked(): bool
     {
         return self::$locked[static::class] ?? false;
@@ -46,7 +58,7 @@ abstract class StaticParameters
 
     protected static function getValueByName($name)
     {
-        if (!isset(self::$values[static::class][$name])) {
+        if (!array_key_exists($name, self::$values[static::class])) {
             throw new InvalidArgumentException("No such parameter named '$name'.");
         }
         return self::$values[static::class][$name];

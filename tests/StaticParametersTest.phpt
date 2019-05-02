@@ -1,19 +1,18 @@
 <?php
 
-namespace IcarusTests\StaticParameters\DI;
+namespace IcarusTests\StaticParameters;
 
 
 use Icarus\StaticParameters\Parameters;
 use Icarus\StaticParameters\StaticParameters;
-use IcarusTests\CustomParameters;
 use Nette\Configurator;
 use Tester\Assert;
 use Tester\TestCase;
 
 
-require_once __DIR__ . '/../bootstrap.php';
+require_once __DIR__ . '/bootstrap.php';
 
-class StaticParametersExtensionTests extends TestCase
+class StaticParametersTest extends TestCase
 {
 
     /**
@@ -28,7 +27,7 @@ class StaticParametersExtensionTests extends TestCase
         $this->configurator = new Configurator();
         $this->configurator->setTempDirectory(TEMP_DIR);
         $this->configurator->setDebugMode(true);
-        $this->configurator->addConfig(__DIR__ . "/../config/config.neon");
+        $this->configurator->addConfig(__DIR__ . "/config/config.neon");
 
         StaticParameters::reset();
     }
@@ -50,7 +49,7 @@ class StaticParametersExtensionTests extends TestCase
     {
         Assert::false(CustomParameters::isLocked());
 
-        $this->configurator->addConfig(__DIR__ . "/../data/valid.neon");
+        $this->configurator->addConfig(__DIR__ . "/data/valid.neon");
 
         Assert::noError(function () {
             $this->configurator->createContainer();
@@ -59,14 +58,21 @@ class StaticParametersExtensionTests extends TestCase
         Assert::true(CustomParameters::isLocked());
         Assert::equal("mySpecialKey", CustomParameters::apiKey());
 
-        Assert::same(['apiKey' => 'mySpecialKey'], CustomParameters::all());
+
+        Assert::noError(function () {
+            CustomParameters::someNull();
+        });
+
+        Assert::equal(null, CustomParameters::someNull());
+
+        Assert::same(['apiKey' => 'mySpecialKey', 'someNull' => null], CustomParameters::all());
     }
 
 
 
     public function testInvalidConfig(): void
     {
-        $this->configurator->addConfig(__DIR__ . "/../data/invalid-structure.config.neon");
+        $this->configurator->addConfig(__DIR__ . "/data/invalid-structure.config.neon");
         Assert::exception(
             function () {
                 $this->configurator->createContainer();
@@ -74,7 +80,6 @@ class StaticParametersExtensionTests extends TestCase
             \Throwable::class
         );
     }
-
 }
 
-(new StaticParametersExtensionTests())->run();
+(new StaticParametersTest())->run();
