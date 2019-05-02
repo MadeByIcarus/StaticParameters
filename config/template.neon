@@ -1,0 +1,9 @@
+extensions:
+    staticParameters: Icarus\StaticParameters\DI\StaticParametersExtension
+
+staticParameters:
+# add custom parameters class that inherits from StaticParameters
+#   exampleParameters:
+#       class: ExampleParameters
+#       parameters:
+#           externalUri: example.com

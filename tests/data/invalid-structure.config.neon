@@ -1,0 +1,5 @@
+staticParameters:
+    test:
+        - IcarusTests\CustomParameters
+        params:
+            hey: Jude

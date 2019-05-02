@@ -1,0 +1,5 @@
+extensions:
+    staticParameters: Icarus\StaticParameters\DI\StaticParametersExtension
+
+di:
+    debugger: false

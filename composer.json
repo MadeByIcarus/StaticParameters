@@ -1,0 +1,39 @@
+{
+  "name": "icarus/static-parameters",
+  "type": "library",
+  "license": "MIT",
+  "description": "Create a static class containing parameters from config file.",
+  "keywords": ["config", "parameters", "static access", "nette"],
+  "authors": [
+    {
+      "name": "Pavel Gajdoš",
+      "email": "info@pavelgajdos.cz"
+    },
+    {
+      "name": "Icarus s.r.o",
+      "homepage": "http://icarus.cz"
+    }
+  ],
+  "require": {
+    "php": ">=7.1.0",
+    "nette/bootstrap": "^3.0",
+    "nette/di": "^3.0"
+  },
+  "require-dev": {
+    "nette/tester": "^2.2"
+  },
+  "suggest": {
+    "nette/di": "for integration with Nette DI container"
+  },
+  "autoload": {
+    "psr-4": {
+      "Icarus\\StaticParameters\\DI\\": "src/DI/",
+      "Icarus\\StaticParameters\\": "src/StaticParameters/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "IcarusTests\\": "tests/"
+    }
+  }
+}
