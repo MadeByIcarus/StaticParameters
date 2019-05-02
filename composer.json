@@ -2,7 +2,7 @@
   "name": "icarus/static-parameters",
   "type": "library",
   "license": "MIT",
-  "description": "Create a static class containing parameters from config file.",
+  "description": "Creates a static class Parameters containing common parameters from config file. Also allows to create custom classes with user-defined parameters.",
   "keywords": ["config", "parameters", "static access", "nette"],
   "authors": [
     {
