@@ -1,7 +1,7 @@
 {
   "name": "icarus/static-parameters",
   "type": "library",
-  "license": "MIT",
+  "license": "BSD-3-Clause",
   "description": "Creates a static class Parameters containing common parameters from config file. Also allows to create custom classes with user-defined parameters.",
   "keywords": ["config", "parameters", "static access", "nette"],
   "authors": [
