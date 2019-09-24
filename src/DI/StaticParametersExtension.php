@@ -6,6 +6,7 @@ namespace Icarus\StaticParameters\DI;
 
 
 use Icarus\StaticParameters\Parameters;
+use Icarus\StaticParameters\StaticParameters;
 use Nette\DI\CompilerExtension;
 use Nette\Schema\Expect;
 use Nette\Schema\Schema;
@@ -26,7 +27,16 @@ class StaticParametersExtension extends CompilerExtension
             ]));
     }
 
-
+    public function loadConfiguration()
+    {
+        foreach ($this->config as $name => $schema) {
+            $class = $schema->class;
+            if (is_subclass_of($class, StaticParameters::class)) {
+                /** @var StaticParameters $class */
+                $class::validate($schema->parameters);
+            }
+        }
+    }
 
     public function afterCompile(Nette\PhpGenerator\ClassType $class)
     {

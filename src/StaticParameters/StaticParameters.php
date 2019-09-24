@@ -21,14 +21,14 @@ abstract class StaticParameters
 
 
     /**
-     * @internal
      * @param $name
      * @param $value
+     * @internal
      */
     public static function add($name, $value)
     {
         if (self::isLocked()) {
-           throw new \RuntimeException("Parameters are locked. Use config file to change the values.");
+            throw new \RuntimeException("Parameters are locked. Use config file to change the values.");
         }
         self::$values[static::class][$name] = $value;
     }
@@ -46,8 +46,8 @@ abstract class StaticParameters
 
 
     /**
-     * @internal
      * @return bool
+     * @internal
      */
     public static function isLocked(): bool
     {
@@ -65,6 +65,7 @@ abstract class StaticParameters
     }
 
 
+
     /**
      * @internal
      */
@@ -79,5 +80,12 @@ abstract class StaticParameters
     public static function all()
     {
         return self::$values[static::class];
+    }
+
+
+
+    public static function validate(array $config): void
+    {
+
     }
 }
